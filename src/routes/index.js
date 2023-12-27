@@ -23,5 +23,10 @@ export const router = createRouter({
       name: "BasicGrammar",
       component: () => import("../views/BasicGrammar/index.vue"),
     },
+    {
+      path: "/PRButton",
+      name: "PRButton",
+      component: () => import("../views/PRButton/index.vue"),
+    },
   ],
 });

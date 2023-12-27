@@ -15,5 +15,6 @@
     <router-link to="/page2">page2</router-link>
     <router-link to="/page3">page3</router-link>
     <router-link to="/BasicGrammar">BasicGrammar</router-link>
+    <router-link to="/PRButton">PRButton</router-link>
   </div>
 </template>

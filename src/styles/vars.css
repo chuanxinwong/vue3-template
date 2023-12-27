@@ -1,0 +1,19 @@
+html {
+  --theme1: #0066ff;
+  --theme2: #4c8aff;
+  --theme3: #7dacff;
+  --theme4: #aecdff;
+  --theme5: #e1edff;
+  --themecur: var(--theme1);
+  --font1: 12px;
+  --font3: 14px;
+  --font5: 16px;
+  --fontcur: var(--font3);
+  --black1: #000000;
+  --black3: #222222;
+  --black4: #444444;
+  --radius1: 3px;
+  --radius2: 5px;
+  --radius3: 7px;
+  --dur: 0.25s;
+}

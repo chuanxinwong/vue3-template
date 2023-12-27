@@ -2,6 +2,7 @@
 @import url("./styles/public.css");
 </style>
 <template>
+  <!-- Navigation 是公共组件 -->
   <Navigation />
   <router-view />
 </template>

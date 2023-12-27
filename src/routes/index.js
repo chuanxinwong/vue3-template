@@ -18,5 +18,10 @@ export const router = createRouter({
       name: "page3",
       component: () => import("../views/page3/index.vue"),
     },
+    {
+      path: "/BasicGrammar",
+      name: "BasicGrammar",
+      component: () => import("../views/BasicGrammar/index.vue"),
+    },
   ],
 });

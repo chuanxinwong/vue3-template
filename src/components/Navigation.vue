@@ -14,5 +14,6 @@
     <router-link to="/">page1</router-link>
     <router-link to="/page2">page2</router-link>
     <router-link to="/page3">page3</router-link>
+    <router-link to="/BasicGrammar">BasicGrammar</router-link>
   </div>
 </template>

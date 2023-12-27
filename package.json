@@ -1,0 +1,27 @@
+{
+  "name": "vue3-template",
+  "version": "1.0.0",
+  "description": "vue3-template",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chuanxinwong/vue3-template.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chuanxinwong/vue3-template/issues"
+  },
+  "homepage": "https://github.com/chuanxinwong/vue3-template#readme",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "vue": "^3.3.13",
+    "vue-router": "^4.2.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^2.3.3"
+  }
+}

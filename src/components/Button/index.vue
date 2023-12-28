@@ -29,7 +29,7 @@
 }
 </style>
 <template>
-  <div class="Button" @click="click">
+  <div class="Button" :class="cls" @click="click">
     <span>{{ props.text }}</span>
     <div class="loadin ful" v-if="datas.loading">
       <Loading />
@@ -40,16 +40,27 @@
 export default { name: "Button" }
 </script>
 <script setup>
-import { reactive, useAttrs } from "vue"
-import defPubProps from "../defPubProps.js"
+import { reactive, useAttrs, provide } from "vue"
 import defProps from './defProps.js';
+import defStdProps from "../defStdProps.js"
+import defPubProps from "../defPubProps.js"
+import pubActions from "../pubActions.js";
 import Loading from "../Loading/index.vue"
 
+var glpps = provide("glpps");
 var attrs = useAttrs()
-var props = defineProps({ ...defPubProps, ...defProps });
+var props = defineProps({ ...defPubProps, ...defStdProps, ...defProps });
 var datas = reactive({
   loading: false,
 })
+
+const useActions = pubActions(props, datas, attrs, glpps);
+
+
+var cls = {
+  disabled: useActions.cmpDisabled.value
+}
+
 
 function click() {
   // 禁用

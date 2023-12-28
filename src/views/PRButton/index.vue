@@ -4,7 +4,7 @@
 
     <hr>
     <h3>基础用法</h3>
-    <MyButton text="Aaa" :click="click1" />
+    <MyButton text="Aaa" :disabled="true" :click="click1" />
 
     <hr>
     <h3>带有参数</h3>

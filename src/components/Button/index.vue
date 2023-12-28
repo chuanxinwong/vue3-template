@@ -40,13 +40,13 @@
 export default { name: "Button" }
 </script>
 <script setup>
-import { reactive } from "vue"
+import { reactive, useAttrs } from "vue"
 import defPubProps from "../defPubProps.js"
 import defProps from './defProps.js';
 import Loading from "../Loading/index.vue"
 
+var attrs = useAttrs()
 var props = defineProps({ ...defPubProps, ...defProps });
-
 var datas = reactive({
   loading: false,
 })
@@ -66,7 +66,7 @@ function click() {
     return;
   }
 
-  let proms = props.click();
+  let proms = props.click(attrs, props);
   // 不是 Promise
   if (!(proms instanceof Promise)) {
     return;

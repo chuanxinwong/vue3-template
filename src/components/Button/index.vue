@@ -1,5 +1,6 @@
 <style lang="less">
 .Button {
+  position: relative;
   display: inline-flex;
   align-items: center;
   font-size: var(--fontcur);
@@ -9,8 +10,14 @@
   color: var(--black1);
   border-radius: var(--radius1);
   transition-duration: var(--dur);
-  cursor: pointer;
   margin: var(--radius1);
+  cursor: pointer;
+
+  .loadin {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.5);
+    cursor: wait;
+  }
 
   &:hover {
     box-shadow: 0 0 var(--radius1) var(--themecur);
@@ -24,60 +31,57 @@
 <template>
   <div class="Button" @click="click">
     <span>{{ props.text }}</span>
+    <div class="loadin ful" v-if="datas.loading">
+      <Loading />
+    </div>
   </div>
 </template>
 <script>
 export default { name: "Button" }
 </script>
 <script setup>
+import { reactive } from "vue"
 import defPubProps from "../defPubProps.js"
 import defProps from './defProps.js';
+import Loading from "../Loading/index.vue"
 
 var props = defineProps({ ...defPubProps, ...defProps });
 
-var datas = reaction({
-  minTimer: 2000,
+var datas = reactive({
+  loading: false,
 })
 
 function click() {
+  // 禁用
   if (props.gdisabled || props.disabled) {
     return;
   }
-  run();
-}
-
-function run() {
-  var { minTimer } = datas;
-  if (typeof props.click === "function") {
-    var proms = props.click();
-    console.log(proms);
-    if (!(proms instanceof Promise)) {
-      // datas.flag = true;
-      return
-    }
-
-    datas.flag = false;
-    datas.timer = Date.now();
-    proms
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        var now = Date.now();
-        var diff = now - datas.timer;
-        if (now - datas.timer < minTimer) {
-          setTimeout(() => {
-            datas.flag = true;
-          }, minTimer - diff);
-        } else {
-          datas.flag = true;
-        }
-      });
-
+  // 有正在进行的异步函数
+  if (datas.loading) {
     return;
   }
-  console.warn("clickHandler not function");
-  // datas.flag = true;
+  // 参数不是函数；
+  if (typeof props.click != "function") {
+    console.warn("click Handler not a function");
+    return;
+  }
+
+  let proms = props.click();
+  // 不是 Promise
+  if (!(proms instanceof Promise)) {
+    return;
+  }
+
+  datas.loading = true;
+  proms
+    .catch((err) => {
+      // 防止函数没有捕捉错误；
+      console.log(err);
+    })
+    .finally(() => {
+      datas.loading = false;
+    });
+
 }
 
 

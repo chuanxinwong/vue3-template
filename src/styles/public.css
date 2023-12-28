@@ -10,3 +10,26 @@ body,
   padding: 0;
   list-style: none;
 }
+
+/* 样式 垂直 水平 居中 */
+.fcc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* 样式， 垂直居中， 两端对齐 */
+.fcb {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+/* 全部填充 */
+.ful {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+
+
